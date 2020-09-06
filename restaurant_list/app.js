@@ -7,7 +7,7 @@ const Res = require('./models/restaurants')
 
 // 宣告 伺服器
 const app = express()
-const port = 3003
+const port = 3000
 
 // 設定 模板引擎
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -27,7 +27,6 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-
 // 路由設計
 app.get('/', (req, res) => {
   Res.find()
@@ -40,23 +39,40 @@ app.get('/search', (req, res) => {
   Res.find({ name: { "$regex": req.query.keyword } })
     .lean()
     .then(restaurants =>
-      res.render('index', { restaurants: restaurants }))
+      res.render('index', { restaurants: restaurants })
+    )
     .catch(err => console.error(err))
 })
 
+app.get('/restaurants/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurants', (req, res) => {
+  const name = req.body.name
+  const category = req.body.category
+  const location = req.body.location
+  const phone = req.body.phone
+  const description = req.body.description
+  return Res.create({ name: name, category: category, location: location, phone: phone, description: description })
+    .then(() => res.redirect('/'))
+    .catch(err => console.error(err))
+})
+
+
 app.get('/restaurants/:res_id', (req, res) => {
   const res_id = req.params.res_id
-  return Res.find({ id: res_id })
+  return Res.findById(res_id)
     .lean()
-    .then((restaurant) => res.render('show', { restaurant: restaurant[0] }))
+    .then((restaurant) => res.render('show', { restaurant: restaurant }))
     .catch((err) => console.error(err))
 })
 
 app.get('/restaurants/:res_id/edit', (req, res) => {
   const res_id = req.params.res_id
-  return Res.find({ id: res_id })
+  return Res.findById(res_id)
     .lean()
-    .then((restaurant) => res.render('edit', { restaurant: restaurant[0] }))
+    .then((restaurant) => res.render('edit', { restaurant: restaurant }))
     .catch((err) => console.error(err))
 })
 
@@ -68,14 +84,14 @@ app.post('/restaurants/:res_id/edit', (req, res) => {
   const phone = req.body.phone
   const description = req.body.description
 
-  return Res.find({ id: res_id })
+  return Res.findById(res_id)
     .then(restaurant => {
-      restaurant[0].name = name
-      restaurant[0].category = category
-      restaurant[0].location = location
-      restaurant[0].phone = phone
-      restaurant[0].description = description
-      return restaurant[0].save()
+      restaurant.name = name
+      restaurant.category = category
+      restaurant.location = location
+      restaurant.phone = phone
+      restaurant.description = description
+      return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${res_id}`))
     .catch(err => console.error(err))
@@ -83,8 +99,8 @@ app.post('/restaurants/:res_id/edit', (req, res) => {
 
 app.post('/restaurants/:res_id/delete', (req, res) => {
   const res_id = req.params.res_id
-  return Res.find({ id: res_id })
-    .then(restaurant => restaurant[0].remove())
+  return Res.findById(res_id)
+    .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch((err) => console.error(err))
 })

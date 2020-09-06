@@ -45,7 +45,7 @@ app.post('/todos', (req, res) => {
 })
 
 app.get('/todos/:id', (req, res) => {
-  const id = req.params.id
+  const id = req.param.id
   return Todo.findById(id)
     .lean()
     .then((todo) => res.render('detail', { todo }))

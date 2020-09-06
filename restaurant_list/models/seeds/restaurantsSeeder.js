@@ -14,7 +14,6 @@ db.once('open', () => {
   console.log('mongodb connected!')
   restList.results.forEach(item => {
     Res.create({
-      id: item.id,
       name: item.name,
       name_en: item.name_en,
       category: item.category,

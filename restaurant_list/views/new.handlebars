@@ -1,6 +1,6 @@
-<form action="/restaurants/{{ restaurant._id }}/edit" method="POST">
+<form action="/restaurants" method="POST">
   <div class="text-center">
-    <input type="text" name="name" class="mb-1 restaurant-show-title" value="{{restaurant.name}}">
+    <input type="text" name="name" class="mb-1 restaurant-show-title">
   </div>
   <div class="container">
     <div class="row">
@@ -11,7 +11,7 @@
             <i class="fas fa-utensils pr-2"></i>
             類別：
           </span>
-          <input type="text" name="category" value="{{restaurant.category}}">
+          <input type="text" name="category">
         </p>
 
         <p class="mb-1">
@@ -19,8 +19,8 @@
             <i class="fas fa-map-marker-alt pr-2"></i>
             地址：
           </span>
-          <input type="text" name="location" value="{{restaurant.location}}">
-          <a href="{{restaurant.google_map}}" class="text-secondary" target="_blank">
+          <input type="text" name="location">
+          <a href="" class="text-secondary" target="_blank">
             <i class="fas fa-location-arrow pr-2 fa-xs"></i>
           </a>
         </p>
@@ -30,20 +30,18 @@
             <i class="fas fa-mobile-alt pr-2"></i>
             電話：
           </span>
-          <input name="phone" value="{{restaurant.phone}}">
+          <input name="phone">
         </p>
 
         <p class="mb-1 col-12">
-          <textarea rows='5' name="description" style="min-width: 100%">{{restaurant.description}}
+          <textarea rows='5' name="description" style="min-width: 100%">
           </textarea>
         </p>
 
-        <img class=" rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
-          style="max-width: 600px;">
+        <img class=" rounded mx-auto d-block mb-4 w-100" style="max-width: 600px;">
 
         <div class="text-center">
-          <button type="submit" class="btn btn-sm btn-info">Save</button>
-          <a href="/" class="btn btn-sm btn-success">Back</a>
+          <button type="submit" class="btn btn-sm btn-info">Create</button>
         </div>
       </div>
     </div>
