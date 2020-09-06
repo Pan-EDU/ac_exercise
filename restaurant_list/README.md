@@ -1,26 +1,45 @@
-# Restaurant List
+# restaurant-list
 
-## Preface
 
-This is Hw-project from alpha-camp.
-You could look around the restaurant included in `restaurant.json` and search some keyword for restaurant's name.
+## Preface 
 
-## Feature
+It's A6 HW for Semester 2-3.
+I use Node.js + Express + Handlebars + Mogoose to implement a project named "餐廳清單".
 
-* Look around some restaurants.
-* Search for restaurant's name you prefer.
+## Prerequisites
 
-## Prerequisite
+The versions of various tools are listed below
 
-* Node.js
-* Express
-* Express-handlebars
+* Node.js: v12.18.3
+* npm: 6.14.8
+* body-parser: 1.19.0
+* express: 4.17.1
+* express-handlebars: 5.1.0
+* mongoose: 5.10.3
 
-## Install 
+## Installation and execution
 
-The package you should install is included by `package.jon` and managed by `npm` tool.
-You could just enter this project's root and run the commmand `npm install` to get any environment ready.
+0. Check if you have install Mogodb and execute `mongod --dbpath [your-db-folder]`.
+1. `git clone [this-repo]`
+2. `cd ac_exercise/restaurant_list` and `npm install .`
+The npm would install the tools I mentioned above.
+3. `npm run seed`
+It would run models/seeds/restaurantsSeeder.js, build a database named res-list depending on models/seeds/restaurants.json.
+3. `npm run start`
+It would start web-server at localhost:3000.
+4. Input `http://localhost:3000/` in your web browser.
+5. Check the result
+
+![demo](https://s1.imgs.cc/img/aaaabSn2b.gif?_w=750)
+
+## Features
+
+* Search for restaurants with keyword
+* Create the restaurant
+* View the detail of restaurant
+* Edit the info of restaurant
+* Delete the restaurant
 
 ## Reference
 
-* Alpha Camp's tutorial about <Movie-list> project.
+* AC tutorial for todo-list(mongodb-version) project.
