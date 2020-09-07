@@ -4,7 +4,7 @@
     <div class="search-bar-inner">
       <form action="/search">
         <h4 class="mb-2">尋找餐廳：</h4>
-        <div class="input-group">
+        <div class="input-group d-flex">
           <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳名稱關鍵字" aria-label="Restaurant Name..."
             value="{{keyword}}" aria-describedby="search-button">
           <div class="input-group-append">
@@ -12,6 +12,14 @@
           </div>
         </div>
       </form>
+      <div class="dropdown h-100 mt-3">
+        <select onchange="location = this.value;" name="sorting" name="sorting" id="inputState"
+          class="form-control selector">
+          <option class='selector-title selector' selected>排列</option>
+          <option class='sort-asc selector' value="/sort/name/asc">餐廳名稱 (A ~ Z)</option>
+          <option class='sort-desc selector' value="/sort/name/desc">餐廳名稱 (Z ~ A)</option>
+        </select>
+      </div>
     </div>
   </div>
 </div>
@@ -40,7 +48,7 @@
 
                 <a href="/restaurants/{{ this._id}}/edit" class="btn btn-success btn-sm">edit</a>
 
-                <form action="/restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
+                <form action="/restaurants/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
                   <button type="submit" class="btn btn-danger btn-sm">delete</button>
                 </form>
               </div>
@@ -48,10 +56,6 @@
           </div>
         </a>
         {{/each}}
-
-      </div>
-      <div class="text-center">
-        <a href="/restaurants/new" class=" btn-warning btn">Create</a>
       </div>
     </div>
   </div>

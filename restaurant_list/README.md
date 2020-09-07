@@ -3,7 +3,7 @@
 
 ## Preface 
 
-It's A6 HW for Semester 2-3.
+It's A8 HW for Semester 2-3.
 I use Node.js + Express + Handlebars + Mogoose to implement a project named "餐廳清單".
 
 ## Prerequisites
@@ -16,6 +16,7 @@ The versions of various tools are listed below
 * express: 4.17.1
 * express-handlebars: 5.1.0
 * mongoose: 5.10.3
+* method-override: 3.0.0
 
 ## Installation and execution
 
@@ -30,7 +31,7 @@ It would start web-server at localhost:3000.
 4. Input `http://localhost:3000/` in your web browser.
 5. Check the result
 
-![demo](https://s1.imgs.cc/img/aaaabSn2b.gif?_w=750)
+![demo](https://s1.imgs.cc/img/aaaabSRiQ.gif?_w=750)
 
 ## Features
 
@@ -39,6 +40,9 @@ It would start web-server at localhost:3000.
 * View the detail of restaurant
 * Edit the info of restaurant
 * Delete the restaurant
+* RESTful router style
+* Independent router system
+* Sorting by restaurants' name 
 
 ## Reference
 
